@@ -1,0 +1,13 @@
+[core]
+    editor = vim
+[diff]
+    tool = vimdiff
+[github]
+    user = dapisani
+[merge]
+    tool = vimdiff
+[user]
+    name = David McIntyre Pisani 
+    email = pisani.dm@gmail.com
+[web]
+    browser = firefox
