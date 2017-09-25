@@ -11,6 +11,17 @@ set hidden
 " Enable syntax highlighting
 syntax on
 
+" Has('python') clobbers has('python3') during plugin load.
+" Ensures has(..) resolves correctly and sets python flavor used to CurrentPy 
+" Command line switch for python2
+" vim --cmd 'let py2 = 1'
+"
+if exists('py2') && has('python')
+  command! -nargs=1 CurrentPy py <args>
+elseif has('python3')
+  command! -nargs=1 CurrentPy py3 <args>
+endif
+
 " Colorscheme solarized
 colorscheme solarized
 

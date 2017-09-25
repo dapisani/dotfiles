@@ -1,32 +1,24 @@
 #!/bin/bash
+#
+# Copies config files to home directory and clones vim plugins
 
-PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+readonly PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+readonly PLUGIN_DIRECTORY=$HOME/.vim/pack/plugins/start
+
+clone_repo() {
+  local local_repo_location="$1"
+  local repo_name="$2"
+  local checkout_sha="$3"
+  local remote_repo_ssh=git@github.com:$repo_name
+
+  if [ ! -d $local_repo_location ]; then
+    git clone $remote_repo_ssh $local_repo_location
+    git -C $local_repo_location checkout -b last_tested $checkout_sha
+  fi
+}
 
 rsync -av --exclude="*.swp" $PARENT_PATH/home/. ~/
-
-PLUGIN_DIRECTORY=$HOME/.vim/pack/plugins/start
-
-#Clone Vim plugins
-ALE_DIRECTORY=$PLUGIN_DIRECTORY/ale
-if [ -d $ALE_DIRECTORY ]; then
-  git -C $ALE_DIRECTORY clean -dxf
-  git -C $ALE_DIRECTORY pull
-else
-  git clone https://github.com/w0rp/ale.git $ALE_DIRECTORY
-fi
-
-NERD_TREE_DIRECTORY=$PLUGIN_DIRECTORY/nerdtree
-if [ -d $NERD_TREE_DIRECTORY ]; then
-  git -C $NERD_TREE_DIRECTORY clean -dxf
-  git -C $NERD_TREE_DIRECTORY pull
-else
-  git clone https://github.com/scrooloose/nerdtree.git $NERD_TREE_DIRECTORY
-fi
-
-COMPLETOR_DIRECTORY=$PLUGIN_DIRECTORY/completor
-if [ -d $COMPLETOR_DIRECTORY ]; then
-  git -C $COMPLETOR_DIRECTORY clean -dxf
-  git -C $COMPLETOR_DIRECTORY pull
-else
-  git clone https://github.com/maralla/completor.vim.git $COMPLETOR_DIRECTORY
-fi
+clone_repo $PLUGIN_DIRECTORY/ale w0rp/ale.git 2bd3523
+clone_repo $PLUGIN_DIRECTORY/nerdtree scrooloose/nerdtree.git 5782b22
+clone_repo $PLUGIN_DIRECTORY/completor maralla/completor.vim.git 73edc3a
+clone_repo $PLUGIN_DIRECTORY/jedi_vim davidhalter/jedi-vim.git c8164fd

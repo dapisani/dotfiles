@@ -8,7 +8,7 @@ set fileformat=unix
 set encoding=utf-8
 
 "python with virtualenv support
-py << EOF
+CurrentPy << EOF
 import os
 import sys
 if 'VIRTUAL_ENV' in os.environ:
