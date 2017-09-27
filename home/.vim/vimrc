@@ -23,7 +23,11 @@ elseif has('python3')
 endif
 
 " Colorscheme solarized
+set background=dark
 colorscheme solarized
+
+" Blacklist completor from python
+let g:completor_blacklist=['python']
 
 " Better command-line completion
 set wildmenu
