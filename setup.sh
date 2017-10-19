@@ -20,5 +20,5 @@ clone_repo() {
 rsync -av --exclude="*.swp" $PARENT_PATH/home/. ~/
 clone_repo $PLUGIN_DIRECTORY/ale w0rp/ale.git 2bd3523
 clone_repo $PLUGIN_DIRECTORY/nerdtree scrooloose/nerdtree.git 5782b22
-clone_repo $PLUGIN_DIRECTORY/completor maralla/completor.vim.git 73edc3a
-clone_repo $PLUGIN_DIRECTORY/jedi_vim davidhalter/jedi-vim.git c8164fd
+clone_repo $PLUGIN_DIRECTORY/completor maralla/completor.vim.git 008ab61 
+clone_repo $PLUGIN_DIRECTORY/vim_wiki vimwiki/vimwiki.git 976cbbc
