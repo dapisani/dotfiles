@@ -17,7 +17,8 @@ clone_repo() {
   fi
 }
 
-rsync -av --exclude="*.swp" $PARENT_PATH/home/. ~/
+rsync -av --exclude="*.swp" $PARENT_PATH/home/ ~/
+chmod 755 ~/
 clone_repo $PLUGIN_DIRECTORY/ale w0rp/ale.git 2bd3523
 clone_repo $PLUGIN_DIRECTORY/nerdtree scrooloose/nerdtree.git 5782b22
 clone_repo $PLUGIN_DIRECTORY/completor maralla/completor.vim.git 008ab61 
