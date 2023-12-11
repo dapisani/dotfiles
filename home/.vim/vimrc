@@ -24,7 +24,7 @@ endif
 
 " Colorscheme solarized
 set background=dark
-colorscheme solarized
+colorscheme onehalfdark
 
 " Set VimWiki home path
 let g:vimwiki_list = [{'path': '$HOME/Google_Drive/notebooks'}]
